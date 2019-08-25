@@ -18,6 +18,7 @@ var requestHandler = function(request, response) {
   }
   else{
     response.writeHead(404, {'Content-Type': 'application/json'});
+    response.write("Bad gateway error");
   }
   response.end();
 };
