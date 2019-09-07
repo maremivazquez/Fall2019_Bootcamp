@@ -38,9 +38,9 @@ var removeCable = function() {
     }
   });
 };
-var updatePhelpsMemorial = function() {
+var updatePhelpsLab = function() {
   /*
-    Phelps Memorial Hospital Center's address is incorrect. Find the listing, update it, and then 
+    Phelps Lab address is incorrect. Find the listing, update it, and then 
     log the updated document to the console. 
    */ 
   Listing.findOne({ name: 'Phelps Laboratory' }, function(err, doc) {
@@ -69,5 +69,5 @@ var retrieveAllListings = function() {
 
 findLibraryWest();
 removeCable();
-updatePhelpsMemorial();
+updatePhelpsLab();
 retrieveAllListings();
