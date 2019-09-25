@@ -1,6 +1,6 @@
 var config = require('../config/config'), 
     request = require('request');
-
+var NodeGeocoder = require('node-geocoder');
 
 
 module.exports = function(req, res, next) {
@@ -25,15 +25,25 @@ module.exports = function(req, res, next) {
         //For ideas about response and error processing see https://opencagedata.com/tutorials/geocode-in-nodejs
         
         //JSON.parse to get contents. Remember to look at the response's JSON format in open cage data
-        
         /*Save the coordinates in req.results -> 
           this information will be accessed by listings.server.model.js 
           to add the coordinates to the listing request to be saved to the database.
 
-          Assumption: if we get a result we will take the coordinates from the first result returned
-        */
+          Assumption: if we get a result we will take the coordinates from the first result returned*/
         //  req.results = stores you coordinates
-        next();
+    var geocoder = NodeGeocoder({
+       provider: 'opencage',
+       apiKey: options.key
+    });
+    geocoder.geocode(options.q)
+    .then(res => {
+       console.log(res);
+       req.results = res;
+    })
+    .catch(err => {
+       console.log(err);
+    });
+    next();
     });
   } else {
     next();
