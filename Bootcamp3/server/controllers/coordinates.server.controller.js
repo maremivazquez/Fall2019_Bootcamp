@@ -31,21 +31,16 @@ module.exports = function(req, res, next) {
 
           Assumption: if we get a result we will take the coordinates from the first result returned*/
         //  req.results = stores you coordinates
-    var geocoder = NodeGeocoder({
-       provider: 'opencage',
-       apiKey: options.key
-    });
-    geocoder.geocode(options.q)
-    .then(res => {
-       console.log(res);
-       req.results = res;
-    })
-    .catch(err => {
-       console.log(err);
-    });
-    next();
-    });
-  } else {
+				const coordinates = JSON.parse(body).results[0].geometry;
+				console.log(coordinates);
+				req.results = {
+					lat: coordinates.lat,
+					lng: coordinates.lng
+				}
+				next();
+			});
+  }
+		else {
     next();
   }
 };  

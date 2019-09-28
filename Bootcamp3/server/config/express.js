@@ -52,9 +52,8 @@ module.exports.init = function() {
       The path.resolve() method returns a string and resolves a sequence of paths or path segments into an absolute path.
       If no path segments are passed, path.resolve() will return the absolute path of the current working directory.
    */
-   //res.sendFile(path.resolve(...));
-   res.status(400).send("Please go to homepage for all routes not specified.");
-   //res.sendFile(path.resolve('../../client/index.html'));
+   //res.sendFile(path.resolve());
+   res.sendFile(path.resolve(__dirname + '/../../client/index.html'));
   });
   
   return app;

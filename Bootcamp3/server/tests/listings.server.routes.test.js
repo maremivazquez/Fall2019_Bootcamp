@@ -18,7 +18,6 @@ describe('Listings CRUD tests', function() {
 
     done();
   });
-
   it('should it able to retrieve all listings', function(done) {
     agent.get('/api/listings')
       .expect(200)
@@ -117,11 +116,7 @@ describe('Listings CRUD tests', function() {
   coordinates.server.controlelr.js file 
 */
 
-  //
-  // COMMENTED OUT BECAUSE THERE ARE ISSUES WITH API
-  //
-
-  /*it('should be able to save a listing with coordinates', function(done) {
+  it('should be able to save a listing with coordinates', function(done) {
     var listing2 = {
       code: 'GMC', 
       name: 'Dr. Gardner-McCunes Office', 
@@ -156,7 +151,7 @@ describe('Listings CRUD tests', function() {
             done();
           });
       })
-  });*/
+  });
 
   after(function(done) {
     if(id) {
