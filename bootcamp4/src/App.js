@@ -7,12 +7,13 @@ import AddBuilding from './components/AddBuilding';
 
 
 class App extends React.Component {
+	data = this.props.data;
+	currId=148;
   constructor(props) {
     super(props);
     this.state = {
       filterText: '',
-      selectedBuilding: 0,
-			showPopup: false
+      selectedBuilding: 1
     };
   }
 
@@ -21,6 +22,8 @@ class App extends React.Component {
 		this.setState({
 			filterText: value
 		})
+		//console.log('filterText:', this.state.filterText);
+		//
   }
 
   selectedUpdate(id) {
@@ -28,16 +31,25 @@ class App extends React.Component {
 		this.setState({
 			selectedBuilding: id
 		})
-  }  
-
-	togglePopup() {
-    this.setState({
-      showPopup: !this.state.showPopup
-    });
   }
+	newId(){
+		this.currId = this.currId+1;
+		return(this.currId);
+	}
+	addBuilding(newEntry){
+		let id = this.newId();
+		//console.log('mydata before:',this.data);
+		const code = newEntry.code.value;
+		const name = newEntry.name.value;
+		const address = newEntry.address.value;
+		const coordinate = newEntry.coordinate;
+		//console.log('newEntry:',newEntry);
+		this.data = this.data.concat([{id, code, name, address, coordinate}]);
+		//console.log('mydata after:',this.data);
+	}
+
 
   render() {
-    
     return (
       <div className="bg">
         <div className="row">
@@ -51,6 +63,7 @@ class App extends React.Component {
         <main>
           <div className="row">
             <div className="column1">
+							<AddBuilding addBuilding={this.addBuilding.bind(this)}/>
               <div className="tableWrapper">
                 <table className="table table-striped table-hover">
                   <tr>
@@ -59,7 +72,7 @@ class App extends React.Component {
                     </td>
                   </tr>
                   <BuildingList
-                    data={this.props.data}
+                    data={this.data}
 										filterText={this.state.filterText}
 										selectedUpdate={this.selectedUpdate.bind(this)}
                   />
@@ -69,10 +82,8 @@ class App extends React.Component {
             <div className="column2">
               <ViewBuilding 
 								selectedBuilding={this.state.selectedBuilding}
-								data={this.props.data}
+								data={this.data}
 							/>
-							{ this.state.showPopup ?
-							<AddBuilding/> : null}
             </div>
           </div>
           <Credit />

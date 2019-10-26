@@ -3,8 +3,9 @@ import React from 'react';
 class ViewBuilding extends React.Component {
 	render() {
 	const {data, selectedBuilding} = this.props;
-	//console.log('my data:', data[selectedBuilding])
-	const {id, code, name, coordinates, address} = data[selectedBuilding];
+	//console.log('my selectedBuilding:', selectedBuilding-1);
+	//console.log('my data:', data);
+	const {id, code, name, address} = data[selectedBuilding-1];
 		return (
 			<div>
 				<p>

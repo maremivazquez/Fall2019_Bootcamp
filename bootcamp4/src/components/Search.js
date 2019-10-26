@@ -1,7 +1,7 @@
 import React from 'react';
 
 class Search extends React.Component {
-	filterUpdate() {
+	handleInputChange() {
 		//Here you will need to update the value of the filter with the value from the textbox
 		const val = this.myValue.value
 		this.props.filterUpdate(val)
@@ -16,7 +16,7 @@ class Search extends React.Component {
 					type="text" 
 					placeholder="Type to Filter" 
 					ref={ (value) => this.myValue = value }
-					onChange={this.filterUpdate.bind(this)}
+          onChange={this.handleInputChange.bind(this)}
 				/>
 			</form>
 		);

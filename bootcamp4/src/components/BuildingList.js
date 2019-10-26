@@ -4,7 +4,6 @@ class BuilingList extends React.Component {
 	render() {
 		//console.log('This is my directory file', this.props.data);
 		const { data, filterText, selectedUpdate } = this.props;
-
 		const buildingList = data
 			.filter(directory => {
 				return directory.name.toLowerCase().indexOf(filterText.toLowerCase()) >= 0
@@ -21,7 +20,7 @@ class BuilingList extends React.Component {
 			);
 		});
 
-		return <div>{buildingList}</div>;
+		return <tbody>{buildingList}</tbody>;
 	}
 }
 export default BuilingList;
