@@ -4,6 +4,7 @@ import ViewBuilding from './components/ViewBuilding';
 import BuildingList from './components/BuildingList';
 import Credit from './components/Credit';
 import AddBuilding from './components/AddBuilding';
+import RemoveBuilding from './components/RemoveBuilding';
 
 
 class App extends React.Component {
@@ -47,7 +48,18 @@ class App extends React.Component {
 		this.data = this.data.concat([{id, code, name, address, coordinate}]);
 		//console.log('mydata after:',this.data);
 	}
-
+	removeBuilding(code){
+		//console.log('mydata before:',this.data);
+		//console.log('code:',code);
+		const result = this.data.find(o => o.code === code );
+		//console.log('result:',result);
+		const index = this.data.indexOf(result);
+		//console.log('index:',index);
+		if(index !== -1){
+			this.data.splice(index,1);
+		}
+		//console.log('mydata after:',this.data);
+	}
 
   render() {
     return (
@@ -64,11 +76,12 @@ class App extends React.Component {
           <div className="row">
             <div className="column1">
 							<AddBuilding addBuilding={this.addBuilding.bind(this)}/>
+							<RemoveBuilding removeBuilding={this.removeBuilding.bind(this)}/>
               <div className="tableWrapper">
                 <table className="table table-striped table-hover">
                   <tr>
                     <td>
-                      <b>Code Building</b>
+                      <b>Building Code</b>
                     </td>
                   </tr>
                   <BuildingList

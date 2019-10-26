@@ -104,7 +104,7 @@ class AddBuilding extends React.Component{
 			</form>
 							</div>
 							<div className="modal-footer">
-				<button type="submit" className="btn btn-primary" data-dismiss="modal" Click={this.addBuilding.bind(this)}>Submit</button>
+				<button type="submit" className="btn btn-primary" data-dismiss="modal" onClick={this.addBuilding.bind(this)}>Submit</button>
 								<button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
 							</div>
 						</div>
